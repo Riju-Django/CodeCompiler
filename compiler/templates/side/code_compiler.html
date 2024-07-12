@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Questions Descriptions -->
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{item.title}}
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>{{item.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Editor and Result/Test Cases -->
+    <div class="row">
+        <!-- Code Editor Section -->
+        <form method="POST">
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="languageSelect" class="form-label">Select Language:</label>
+                <select class="form-select" name="language" id="languageSelect" aria-label="Default select example">
+                    <option selected>Select a language</option>
+                    <option value="python3">Python</option>
+                    <option value="cpp">C ++</option>
+                    <option value="c">C</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="codeEditor" class="form-label">Write your code:</label>
+                <textarea class="form-control" name="source_code" id="codeEditor" rows="10" placeholder="Write your code here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="runBtn">Run Code</button>
+        </div>
+        </form>
+        <!-- Result and Test Cases Section -->
+        <div class="col-4">
+            <nav class="navbar navbar-light bg-light px-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active">Result</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Test Cases</a>
+                    </li>
+                </ul>
+            </nav>
+            <div data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="0" class="scrollspy-example mt-3" tabindex="0">
+                <div id="resultSection" class="mb-4">
+                    <h4>Result</h4>
+                    
+                </div>
+                <div id="testCasesSection">
+                    <h4>Test Cases</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<script>
+    document.getElementById('runBtn').addEventListener('click', function() {
+        // Get the code from the editor
+        var code = document.getElementById('codeEditor').value;
+        // Simulate running the code and showing the result
+        document.getElementById('output').textContent = 'Example output after running the code: ' + code;
+    });
+</script>
+{% endblock %}
